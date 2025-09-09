@@ -56,7 +56,7 @@ about:
   license_file: License.md
   description: |
     The dbt-databricks adapter contains all of the code enabling dbt to work with Databricks.
-    This adapter is based off the amazing work done in dbt-spark.
+    This adapter is based off the amazing work done in dbt-spark
   dev_url: https://github.com/databricks/dbt-databricks
   doc_url: https://docs.getdbt.com/reference/resource-configs/databricks-configs
 
