@@ -1,5 +1,5 @@
 {% set name = "dbt-databricks" %}
-{% set version = "1.10.10" %}
+{% set version = "1.12.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/{{ name.split('-')[1] }}/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 36f23a30e40d07b9c5e44ca97b65bbce52d680ba7ab6bd5bb41a565fcc54421e
+  sha256: 67ae022eb8f1984b7fb1a1bc8c949fd77b8aec9824a1fe86d47300222b796881
 
 build:
   number: 0
