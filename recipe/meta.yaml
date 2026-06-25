@@ -1,5 +1,5 @@
 {% set name = "dbt-databricks" %}
-{% set version = "1.10.10" %}
+{% set version = "1.12.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,13 @@ package:
 
 source:
   url: https://github.com/{{ name.split('-')[1] }}/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 36f23a30e40d07b9c5e44ca97b65bbce52d680ba7ab6bd5bb41a565fcc54421e
+  sha256: 67ae022eb8f1984b7fb1a1bc8c949fd77b8aec9824a1fe86d47300222b796881
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: true  # [py<39]
+  # dbt-core/dbt-spark dep mashumaro has no py314 build (support added in mashumaro 3.17, https://github.com/Fatal1ty/mashumaro/pull/285)
+  skip: true  # [py<310 or py>313]
 
 requirements:
   host:
@@ -21,14 +22,16 @@ requirements:
     - hatchling
   run:
     - python
-    - databricks-sdk >=0.41,<0.64.0
-    - databricks-sql-connector >=4.0.0,<4.0.6
-    - dbt-adapters >=1.16.0,<1.16.5
-    - dbt-common >=1.24.0,<1.29.0
-    - dbt-core >=1.10.1,<1.10.10
-    - dbt-spark >=1.9.0,<1.9.4
-    - keyring >=23.13.0
-    - pydantic >=1.10.0
+    - click >=8.2.0,<9.0.0
+    - databricks-sdk >=0.68.0,<0.105.0
+    - databricks-sql-connector >=4.1.1,<4.2.7
+    - dbt-adapters >=1.22.0,<1.23.0
+    - dbt-common >=1.37.0,<1.38.0
+    - dbt-core >=1.11.2,<1.11.12
+    - dbt-spark >=1.10.0,<1.11.0
+    - keyring >=23.13.0,<25.6.0
+    - packaging >=21.0,<26.0
+    - pydantic >=1.10.0,<2.13.0
 
 test:
   source_files:
